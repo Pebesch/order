@@ -54,8 +54,7 @@ public class OrderDetailController {
         }
     }
 
-    @GetMapping("/{orderDetailId}")
-    @DeleteMapping
+    @DeleteMapping("/{orderDetailId}")
     public ResponseEntity<OrderDetail> deleteOrderDetal(@PathVariable long orderDetailId) {
         if(orderDetailRepository.existsById(orderDetailId)) {
             orderDetailRepository.deleteById(orderDetailId);
