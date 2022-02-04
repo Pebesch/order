@@ -22,7 +22,7 @@ public class EmployeeController {
     @GetMapping(value = "/{employeeId}")
     public ResponseEntity<Employee> find(@PathVariable long employeeId) {
         if(employeeRepository.existsById(employeeId)) {
-            return new ResponseEntity<>(employeeRepository.getById(employeeId), HttpStatus.OK);
+            return new ResponseEntity<>(employeeRepository.findById(employeeId).get(), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -41,7 +41,7 @@ public class EmployeeController {
     @PutMapping(value = "/{employeeId}")
     public ResponseEntity<Employee> updateEmployee(@PathVariable long employeeId, @RequestBody Employee employee) {
         if(employeeRepository.existsById(employeeId)) {
-            Employee e = employeeRepository.getById(employeeId);
+            Employee e = employeeRepository.findById(employeeId).get();
             e.setLastName(employee.getLastName());
             e.setFirstName(employee.getFirstName());
             e.setTitle(employee.getTitle());
@@ -49,6 +49,7 @@ public class EmployeeController {
             e.setBirthDate(employee.getBirthDate());
             e.setHireDate(employee.getHireDate());
             e.setAddress(employee.getAddress());
+            employeeRepository.save(e);
             return new ResponseEntity<>(e, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
