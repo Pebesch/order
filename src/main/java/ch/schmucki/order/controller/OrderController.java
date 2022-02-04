@@ -19,7 +19,7 @@ public class OrderController {
         this.orderRepository = orderRepository;
     }
 
-    @GetMapping
+    @GetMapping("/{orderId}")
     public ResponseEntity<Order> find(@PathVariable long orderId) {
         if(orderRepository.existsById(orderId)) {
             return new ResponseEntity<>(orderRepository.findById(orderId).get(), HttpStatus.OK);
@@ -38,7 +38,7 @@ public class OrderController {
         return new ResponseEntity<>(orderRepository.save(order), HttpStatus.CREATED);
     }
 
-    @PutMapping
+    @PutMapping("/{orderId}")
     public ResponseEntity<Order> updateOrder(@PathVariable long orderId, Order order) {
         if(orderRepository.existsById(orderId)) {
             Order o = orderRepository.findById(orderId).get();
@@ -54,7 +54,7 @@ public class OrderController {
         }
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{orderId}")
     public ResponseEntity<String> deleteOrder(@PathVariable long orderId) {
         if(orderRepository.existsById(orderId)) {
             orderRepository.deleteById(orderId);
