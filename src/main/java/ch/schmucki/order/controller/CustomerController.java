@@ -1,7 +1,7 @@
 package ch.schmucki.order.controller;
 
 import ch.schmucki.order.model.Customer;
-import ch.schmucki.order.service.CustomerRepository;
+import ch.schmucki.order.persistence.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

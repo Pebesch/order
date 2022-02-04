@@ -1,4 +1,4 @@
-package ch.schmucki.order.service;
+package ch.schmucki.order.persistence;
 
 import ch.schmucki.order.model.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
